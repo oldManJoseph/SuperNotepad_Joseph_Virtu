@@ -5,6 +5,7 @@ Public Module Functions
     'Declare public variables
     Public Property boolUnsavedChanges As Boolean
     Public Property strSearchResults As List(Of String)
+
     Sub Rename_frmNotepad(ByVal strFileName As String)
         'changes text property of frmNotepad to strFileName + "- SuperNotepad"
         FrmNotepad.Text = strFileName + " - SuperNotepad"

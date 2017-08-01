@@ -76,6 +76,7 @@ Partial Class FrmNotepad
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtNotepad.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtNotepad.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.txtNotepad.HideSelection = False
         Me.txtNotepad.Location = New System.Drawing.Point(5, 77)
         Me.txtNotepad.Margin = New System.Windows.Forms.Padding(20)
         Me.txtNotepad.Multiline = True
@@ -502,7 +503,7 @@ Partial Class FrmNotepad
         Me.Controls.Add(Me.txtNotepad)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "FrmNotepad"
-        Me.Text = "Untitled - SuperNotepad"
+        Me.Text = "Untitled.txt - SuperNotpad"
         Me.pnlFile.ResumeLayout(False)
         Me.pnlFile.PerformLayout()
         Me.pnlClipboard.ResumeLayout(False)

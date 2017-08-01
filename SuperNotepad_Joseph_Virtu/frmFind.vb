@@ -28,6 +28,8 @@
     End Sub
 
     Private Sub btnFindNext_Click(sender As Object, e As EventArgs) Handles btnFindNext.Click
+        'Selects text based on text inputed in the search field. Has case sensitivity based on if chkMatchCase is checked.
+        'User selects rad buttons up or down to choose which result is selected next
 
         'Update current search key
         strKey = txtFind.Text
@@ -50,6 +52,10 @@
             'Reset list
             intSearchResults.Clear()
 
+            'Unselect past text
+            FrmNotepad.txtNotepad.Select()
+
+
             'Set current key as old key for next search attempt
             strOldKey = strKey
             'Declaring variables to hold current search result and current position in text
@@ -61,10 +67,10 @@
             'Get first search 
             If chkMatchCase.Checked Then
                 'If they chkMatchCase is checked, search with case sensitivity
-                intSearchResult = InStr(intPosition, FrmNotepad.txtNotepad.Text, strKey, 1)
+                intSearchResult = InStr(intPosition, FrmNotepad.txtNotepad.Text, strKey, 0)
             Else
                 'Else search with out case sensitivity
-                intSearchResult = InStr(intPosition, LCase(FrmNotepad.txtNotepad.Text), LCase(strKey), 1)
+                intSearchResult = InStr(intPosition, FrmNotepad.txtNotepad.Text, LCase(strKey), 1)
 
             End If
 
@@ -93,10 +99,10 @@
                     'Get new search result for next loop
                     If chkMatchCase.Checked Then
                         'If they chkMatchCase is checked, search with case sensitivity
-                        intSearchResult = InStr(intPosition, FrmNotepad.txtNotepad.Text, strKey, 1)
+                        intSearchResult = InStr(intPosition, FrmNotepad.txtNotepad.Text, strKey, 0)
                     Else
                         'Else search with out case sensitivity
-                        intSearchResult = InStr(intPosition, LCase(FrmNotepad.txtNotepad.Text), LCase(strKey), 1)
+                        intSearchResult = InStr(intPosition, FrmNotepad.txtNotepad.Text, LCase(strKey), 1)
 
                     End If
                 End While
@@ -132,13 +138,13 @@
         ElseIf radUp.Checked Then
             'If there is another result at intIndexPosition - 1, minus one off the index and select that text
             If intIndexPosition - 1 >= 0 Then
+
                 'Minus one off the index
                 intIndexPosition -= 1
-                'Focus textbox before selectingtext
-                FrmNotepad.txtNotepad.Focus()
+
                 'Select text from result
                 FrmNotepad.txtNotepad.Select(intSearchResults.ElementAt(intIndexPosition) - 1, Len(strKey))
-                Me.BringToFront()
+                'Me.BringToFront()
             Else
                 'ran out of search results, prompt user that supernotepad is unable to find more
                 MsgBox("Cannot find """ + strKey + """")

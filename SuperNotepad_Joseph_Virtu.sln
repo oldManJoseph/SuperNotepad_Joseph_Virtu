@@ -15,6 +15,7 @@ Global
 		{0F13E805-DB01-490C-9FDA-92EC9E75E588}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F13E805-DB01-490C-9FDA-92EC9E75E588}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F13E805-DB01-490C-9FDA-92EC9E75E588}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F13E805-DB01-490C-9FDA-92EC9E75E588}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

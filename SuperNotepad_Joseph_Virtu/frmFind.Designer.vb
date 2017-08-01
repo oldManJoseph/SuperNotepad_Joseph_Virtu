@@ -124,6 +124,9 @@ Partial Class frmFind
         Me.Controls.Add(Me.txtFind)
         Me.Controls.Add(Me.lblFindWhat)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.ImeMode = System.Windows.Forms.ImeMode.Off
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "frmFind"
         Me.Text = "Find"
         Me.grpDirection.ResumeLayout(False)

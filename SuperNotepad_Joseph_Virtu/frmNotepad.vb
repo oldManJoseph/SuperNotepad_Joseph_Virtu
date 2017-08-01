@@ -8,7 +8,6 @@ Public Class FrmNotepad
     'variable that will either hold "Untitled.txt" if new file or
     ' the name of the opened text file.
     Dim strFileName As String = "Untitled.txt"
-
     'Holds opened text documents path
     Dim strFilePath As String
 
@@ -17,11 +16,12 @@ Public Class FrmNotepad
 
     '******************************** FILE PANEL EVENTS********************************************************
     Private Sub btnNewFile_Click(sender As Object, e As EventArgs) Handles btnNewFile.Click
-        'Creates New file for user(Not saved to hardisk).
-        'TODO Change to Default Font Settings
+        'Creates New file for user(Not saved to hardisk until user saves themselves).
 
-        'If there are unsaved changes in text field, prompt user if they would like to save.
-        If boolUnsavedChanges = True Then
+        'If there are unsaved changes, and  prompt user if they would like to save. Won't prompt user if string box 
+        'is empty and no file is open
+        If boolUnsavedChanges = True And (txtNotepad.Text <> String.Empty Or strFilePath <> String.Empty) Then
+
             'Prompt User to save text
             Dim Answer As DialogResult = MessageBox.Show("Unsaved changes, would you like to save?",
             "SuperNotepad", MessageBoxButtons.YesNoCancel)
@@ -64,8 +64,9 @@ Public Class FrmNotepad
         OpenFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
 
 
-        'If there are unsaved changes in text field, prompt user if they would like to save.
-        If boolUnsavedChanges = True Then
+        'If there are unsaved changes, and  prompt user if they would like to save. Won't prompt user if string box 
+        'is empty and no file is open
+        If boolUnsavedChanges = True And (txtNotepad.Text <> String.Empty Or strFilePath <> String.Empty) Then
             'Prompt User to save text
             Dim Answer As DialogResult = MessageBox.Show("Unsaved changes, would you like to save?",
             "SuperNotepad", MessageBoxButtons.YesNoCancel)
@@ -86,6 +87,7 @@ Public Class FrmNotepad
             End Select
         End If
 
+        '
         'If dialog end successfully open file, else end subroutine
         If OpenFileDialog.ShowDialog = Windows.Forms.DialogResult.OK Then
             Try
@@ -290,6 +292,11 @@ Public Class FrmNotepad
 
         'If there are unsaved changes prompt user to save
         If boolUnsavedChanges = True Then
+            'if there is nothing to save do not prompt user to save
+            If txtNotepad.Text = String.Empty And strFilePath = String.Empty Then
+                Exit Sub
+            End If
+
             'Prompt User to save text
             Dim Answer As DialogResult = MessageBox.Show("Unsaved changes, would you like to save?",
                 "SuperNotepad", MessageBoxButtons.YesNoCancel)
@@ -309,6 +316,4 @@ Public Class FrmNotepad
             End Select
         End If
     End Sub
-
-
 End Class
